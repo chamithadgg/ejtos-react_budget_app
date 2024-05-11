@@ -10,8 +10,14 @@ const AllocationForm = (props) => {
 
     const submitEvent = () => {
 
-            if(cost > remaining) {
-                alert("The value cannot exceed remaining funds  £"+remaining);
+        if(cost > remaining) {
+            alert("The value cannot exceed remaining funds  £"+remaining);
+            setCost("");
+            return;
+        }    
+        
+        if(Number.isInteger(cost)) {
+                alert("Enter an Integer Value !");
                 setCost("");
                 return;
             }
@@ -56,15 +62,18 @@ const AllocationForm = (props) => {
                   </div>
                   <select className="custom-select" id="inputGroupSelect02" onChange={(event) => setAction(event.target.value)}>
                         <option defaultValue value="Add" name="Add">Add</option>
-                <option value="Reduce" name="Reduce">Reduce</option>
+                        <option value="Reduce" name="Reduce">Reduce</option>
                   </select>
 
+                    <div className="input-group-prepend" style={{ marginLeft: '1rem' }}>
+                        $
+                  </div>
                     <input
                         required='required'
                         type='number'
                         id='cost'
                         value={cost}
-                        style={{ marginLeft: '2rem' , size: 10}}
+                        style={{ marginLeft: '1rem' , size: 10}}
                         onChange={(event) => setCost(event.target.value)}>
                         </input>
 
